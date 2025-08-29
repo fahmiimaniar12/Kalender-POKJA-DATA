@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,19 +13,30 @@
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
 
   <style>
-    /* Membuat kalender responsive */
-    #calendar {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 15px;
+    .fc .fc-button {
+      font-size: 12px;
+      padding: 2px 6px;
+    }
+
+    .fc .fc-toolbar-title {
+      font-size: 16px;
+      font-weight: 600;
     }
   </style>
 </head>
+
 <body>
 
-  <div class="container">
-    <h1 class="text-center my-4">Kalender Kegiatan</h1>
+  <div class="container mt-5">
+    <h3 class="text-center my-4">Kalender Kegiatan</h3>
+    <hr>
     <div id="calendar"></div>
+    <p class="text-white mb-0 bg-primary p-2 rounded m-1">15 September 2025 - 20 September 2025 : Rapat
+      Kecil dengan 2 Narasumber.</p>
+    <p class="text-white mb-0 bg-success p-2 rounded m-1">24 September 2025 - 27 September 2025 : fullboard,
+      rencana
+      pembahasan "Publikasi dan Halfday"</p>
+    <p class="text-white mb-0 bg-warning p-2 rounded m-1">17 Oktober 2025 : Halfday Publikasi SATU DATA HAM</p>
   </div>
 
   <!-- Bootstrap JS Bundle (Popper + Bootstrap JS) -->
@@ -43,7 +55,7 @@
         headerToolbar: {
           left: 'prev,next today',
           center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+          right: 'dayGridMonth,listWeek'
         },
         events: [
           {
@@ -69,17 +81,21 @@
         dayMaxEvents: true,
         height: 'auto',
         // Responsive tweak: smaller header on small screens
-        windowResize: function(view) {
-          if(window.innerWidth < 576) {
-            calendar.changeView('listWeek');
+        windowResize: function (view) {
+          if (window.innerWidth < 576) {
+            // calendar.changeView('listWeek');
+            calendar.changeView('dayGridMonth');
           } else {
             calendar.changeView('dayGridMonth');
           }
-        }
+        },
+        titleFormat: { year: 'numeric', month: 'short' } // contoh: "Aug 2025"
+
       });
 
       calendar.render();
     });
   </script>
 </body>
+
 </html>
